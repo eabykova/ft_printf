@@ -16,6 +16,19 @@
 # include <stdarg.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <stdio.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1000
+# endif
+
+typedef struct s_list
+{
+	char			*content;
+	struct s_list	*next;
+}					t_list;
 
 int			ft_putchar(char c);
 int			ft_putstr(char *str);
@@ -37,5 +50,14 @@ int			ft_specificator( const char *strin, va_list args);
 long int	ft_convert_uint(int i);
 int			ft_strparse(const char *strin, va_list args);
 int			ft_printf(const char *frm, ...);
+
+size_t		ft_strlen(const char *s);
+char		*ft_strcat(char *dest, char *src);
+char		*ft_strmaker(t_list **list);
+int			ft_lstsize(t_list *list);
+char		*ft_substr(char const *s, unsigned int start, size_t len);
+int			ft_checkbuf(t_list **list, char *buf, int *place);
+void		ft_lstadd_back(t_list **lst, char *new);
+char		*get_next_line(int fd);
 
 #endif

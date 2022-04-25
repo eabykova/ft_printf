@@ -12,15 +12,17 @@
 
 NAME	=	libftprintf.a
 
-SRC		=	ft_printf.c\
-					src/ft_printf_utils.c\
-					src/ft_spec_c.c\
-					src/ft_spec_s.c\
-					src/ft_spec_i_d.c\
-					src/ft_spec_p.c\
-					src/ft_spec_xs.c\
-					src/ft_spec_xl.c\
-					src/ft_spec_u.c
+SRC		=	ft_printf.c \
+					src/ft_printf_utils.c \
+					src/ft_spec_c.c \
+					src/ft_spec_s.c \
+					src/ft_spec_i_d.c \
+					src/ft_spec_p.c \
+					src/ft_spec_xs.c \
+					src/ft_spec_xl.c \
+					src/ft_spec_u.c \
+					src/get_next_line.c \
+					src/get_next_line_utils.c
 
 HEAD	=	includes/ft_printf.h
 OBJ		=	$(SRC:%.c=%.o)
@@ -34,17 +36,18 @@ CC		=	gcc
 all		:	$(NAME)
 
 $(NAME)	:	$(OBJ)
-	ar rcs $(NAME) $?
+	@echo "🚀 Making of ft_printf... 🚀"
+	@ar rcs $(NAME) $?
 
-%.o		:	%.c
-	$(CC) $(FLAG) -c $< -o $@ -MD
+%.o		:	%.c $(HEAD)
+	@$(CC) $(FLAG) -c $< -o $@ -MD
 
 include $(wildcard $(D_FIL))
 
 clean	:
-	rm -f $(OBJ) $(D_FIL)
+	@rm -f $(OBJ) $(D_FIL)
 
 fclean	: clean
-	rm -rf $(NAME)
+	@rm -rf $(NAME)
 
 re		:	fclean all
